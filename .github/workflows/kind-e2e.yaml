@@ -2,7 +2,7 @@ name: KinD e2e tests
 
 on:
   pull_request:
-    branches: [ 'main' ]
+    branches: [ 'main', 'release-*' ]
 
   push:
     branches: [ 'main' ]
@@ -20,14 +20,11 @@ jobs:
       fail-fast: false # Keep running if one leg fails.
       matrix:
         k8s-version:
-        - v1.27.x
         - v1.28.x
 
         gateway:
-        - quay.io/maistra-dev/proxyv2-ubi8:2.4-latest
-        - docker.io/envoyproxy/envoy:v1.26-latest
-        - docker.io/envoyproxy/envoy:v1.27-latest
-        - docker.io/envoyproxy/envoy:v1.28-latest
+        - docker.io/envoyproxy/envoy:v1.31-latest
+        - envoyproxy/envoy:v1.31.0@sha256:2bf7f042e3960e3904864cb09c174498e20a06859a5c394b7e3a6528a649b1da
 
         upstream-tls:
         - plain
